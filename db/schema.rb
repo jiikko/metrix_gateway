@@ -21,10 +21,11 @@ ActiveRecord::Schema.define(version: 20170313132056) do
   create_table "rows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "key",                    null: false
     t.integer  "value",      default: 0, null: false
-    t.integer  "graph_id",               null: false
+    t.integer  "board_id",               null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.index ["graph_id"], name: "index_rows_on_graph_id", using: :btree
+    t.index ["board_id"], name: "index_rows_on_board_id", using: :btree
+    t.index ["key", "value", "board_id"], name: "index_rows_on_key_and_value_and_board_id", unique: true, using: :btree
   end
 
 end
