@@ -1,0 +1,9 @@
+= link_to 'new board', '/boards/new'
+
+ul
+  - @boards.each do |board|
+    li
+      = board.name
+      | |
+      = link_to :edit, edit_board_path(board)
+
