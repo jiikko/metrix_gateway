@@ -1,11 +1,10 @@
-class Api::V1::RowsController < ApplicationController
+class Api::V1::RowsController < Api::BaseController
   def create
     board = Board.find(params[:board_id])
-    row = board.rows.create(key: key, value: value)
-    if row.valid?
+    ActiveRecord::Base.transaction do
+      board.lock!
+      row = board.rows.find_or_create_by!(key: params[:key], value: params[:value])
       render json: :success
-    else
-      render json: row
     end
   end
 end
