@@ -24,6 +24,19 @@ describe Api::V1::RowsController do
         expect(row.key).to eq('3')
         expect(row.value).to eq(5)
       end
+      context '別の日に記録する時' do
+        it '両日でrecordを作成すること' do
+          board = Board.create(name: 'test')
+          Timecop.travel(1.day.ago) do
+            post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
+            expect(board.rows.count).to eq(1)
+            row = board.rows.first
+          end
+          post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
+          expect(board.rows.count).to eq(2)
+          row = board.rows.first
+        end
+      end
     end
 
     context '存在しないboard_id を送信する時' do
