@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :boards, only: [] do
-        resources :rows, only: %i(create)
+      resources :boards, only: :create do
+        resources :rows, only: :create
       end
     end
   end

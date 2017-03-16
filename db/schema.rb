@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20170313132056) do
     t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_boards_on_name", unique: true, using: :btree
   end
 
   create_table "rows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
