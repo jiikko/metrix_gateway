@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20170313132056) do
   end
 
   create_table "rows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "key",                    null: false
-    t.integer  "value",      default: 0, null: false
-    t.integer  "board_id",               null: false
-    t.date     "on",                     null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "key",                                 null: false
+    t.float    "value",      limit: 24, default: 0.0, null: false
+    t.integer  "board_id",                            null: false
+    t.date     "on",                                  null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.index ["board_id", "on", "key", "value"], name: "index_rows_on_board_id_and_on_and_key_and_value", unique: true, using: :btree
     t.index ["board_id"], name: "index_rows_on_board_id", using: :btree
   end
