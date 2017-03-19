@@ -50,5 +50,3 @@ test:
 production:
   <<: *default
   database: metrix_gateway_production
-  username: metrix_gateway
-  password: <%= ENV['METRIX_GATEWAY_DATABASE_PASSWORD'] %>
