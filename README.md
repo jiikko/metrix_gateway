@@ -13,9 +13,9 @@ bundle exec rake db:migrate RAILS_ENV=production
 
 ## サーバの起動
 ```shell
-```
 cd /var/www/metrix_gateway && bundle exec rails server -d -p 4000 -e production
 ```
+
 ## サーバの停止
 ```shell
 kill -9 `cat /var/www/metrix_gateway/tmp/pids/server.pid`
