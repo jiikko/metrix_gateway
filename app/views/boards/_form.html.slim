@@ -1,3 +1,9 @@
 = form_for @board do |f|
-  p = f.text_field :name
+  div
+    p = f.label :name
+    p = f.text_field :name
+  div
+    p = f.label :blocking_interval_of_equivalent, '同値を受け取ったときに何秒ブロックするか'
+    p = f.text_field :blocking_interval_of_equivalent
+
   p = f.submit
