@@ -24,7 +24,7 @@ kill -9 `cat /var/www/metrix_gateway/tmp/pids/server.pid`
 ### 1行送信
 ```shell
 # borad を新規作成
-curl 'http://localhost:3000/api/v1/boards' -X POST -d "board_id=test_queue_times"
+curl 'http://localhost:3000/api/v1/boards' -X POST -d "board_id=test_queue_times" -d "blocking_interval_of_equivalent=5"
 
 # 1行登録
 curl 'http://localhost:3000/api/v1/boards/test_queue_times/rows' -X POST -d "key=hoge_model_spec&value=5"
