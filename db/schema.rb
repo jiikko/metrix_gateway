@@ -24,10 +24,9 @@ ActiveRecord::Schema.define(version: 20170620114203) do
     t.string   "key",                                 null: false
     t.float    "value",      limit: 24, default: 0.0, null: false
     t.integer  "board_id",                            null: false
-    t.date     "on",                                  null: false
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["board_id", "on", "key", "value"], name: "index_rows_on_board_id_and_on_and_key_and_value", unique: true, using: :btree
+    t.index ["board_id", "created_at", "key"], name: "index_rows_on_board_id_and_created_at_and_key", using: :btree
     t.index ["board_id"], name: "index_rows_on_board_id", using: :btree
   end
 

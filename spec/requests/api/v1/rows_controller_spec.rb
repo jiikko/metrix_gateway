@@ -15,19 +15,21 @@ describe Api::V1::RowsController do
     end
 
     context '同じパラメータを送信する時' do
-      it '1 recordだけ作成すること' do
-        board = Board.create(name: 'test')
-        post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
-        post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
-        expect(board.rows.count).to eq(1)
-        row = board.rows.first
-        expect(row.key).to eq('3')
-        expect(row.value).to eq(5)
+      context 'blocking_interval_of_equivalent いないの時' do
+        it '1 recordだけ作成すること' do
+          board = Board.create(name: 'test', blocking_interval_of_equivalent: 100)
+          post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
+          post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
+          expect(board.rows.count).to eq(1)
+          row = board.rows.first
+          expect(row.key).to eq('3')
+          expect(row.value).to eq(5)
+        end
       end
-      context '別の日に記録する時' do
-        it '両日でrecordを作成すること' do
-          board = Board.create(name: 'test')
-          Timecop.travel(1.day.ago) do
+      context 'blocking_interval_of_equivalent を超えている時' do
+        it 'recordを作成すること' do
+          board = Board.create(name: 'test', blocking_interval_of_equivalent: 1)
+          Timecop.travel(2.second.ago) do
             post "/api/v1/boards/#{board.id}/rows", params: { key: 3, value: 5 }
             expect(board.rows.count).to eq(1)
             row = board.rows.first

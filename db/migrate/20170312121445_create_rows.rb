@@ -4,8 +4,7 @@ class CreateRows < ActiveRecord::Migration[5.0]
       t.string :key, null: false
       t.float :value, null: false, default: 0
       t.integer :board_id, null: false, index: true
-      t.date :on, null: false
-      t.index [:board_id, :on, :key, :value], unique: true
+      t.index [:board_id, :created_at, :key]
 
       t.timestamps
     end
