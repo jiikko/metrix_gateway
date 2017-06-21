@@ -1,6 +1,5 @@
 # README
-* BIツール用DataSourceのためのAPIサーバ
-* 同日は同値のレコードを登録できない
+* BIツール DataSourceのためのAPIサーバ
 
 ## インストール
 ```shell
