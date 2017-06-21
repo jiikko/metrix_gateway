@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170620114203) do
 
-  create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "boards", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "name",                                        null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170620114203) do
     t.index ["name"], name: "index_boards_on_name", unique: true, using: :btree
   end
 
-  create_table "rows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string   "key",                                 null: false
     t.float    "value",      limit: 24, default: 0.0, null: false
     t.integer  "board_id",                            null: false
